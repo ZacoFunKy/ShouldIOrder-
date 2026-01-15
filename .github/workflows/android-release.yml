@@ -49,12 +49,20 @@ jobs:
           mkdir -p release
           mv app/build/outputs/apk/release/app-release.apk release/app-release.apk
 
-      # Étape 8 : Mettre à jour le fichier update.json
-      - name: Update update.json
+      # Étape 8 : Créer le fichier update.json (Correction)
+      - name: Create update.json
         run: |
+          # 1. Récupérer le versionCode du build.gradle.kts
           VERSION_CODE=$(grep 'versionCode' app/build.gradle.kts | awk '{print $3}')
+          
+          # 2. Construire l'URL dynamique de l'APK
           APK_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/release/app-release.apk"
-          jq --argjson vc "$VERSION_CODE" --arg url "$APK_URL" '.versionCode = $vc | .url = $url' update.json > tmp.json && mv tmp.json update.json
+          
+          # 3. Créer le fichier JSON de zéro
+          echo "{\"versionCode\": $VERSION_CODE, \"url\": \"$APK_URL\"}" > update.json
+          
+          # 4. Vérification dans les logs
+          cat update.json
 
       # Étape 9 : Commiter et pousser automatiquement l'APK et le JSON mis à jour
       - name: Commit and Push new APK and update.json

@@ -40,6 +40,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -99,7 +100,6 @@ class MainActivity : ComponentActivity() {
 fun ShouldIOrderApp(viewModel: MainViewModel) {
     val context = LocalContext.current
 
-    // L'initialisation est déclenchée une seule fois et gère maintenant TOUT (y compris la màj)
     LaunchedEffect(Unit) {
         viewModel.initializeData()
     }
@@ -154,6 +154,16 @@ fun ShouldIOrderApp(viewModel: MainViewModel) {
                 onGoToFoodSlotMachine = { showFoodSlotMachine = true }
             )
         }
+
+        // Affichage discret du numéro de version
+        Text(
+            text = "v${BuildConfig.VERSION_NAME}",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 2.dp)
+        )
 
         FoodSlotMachineDialog(
             isVisible = showFoodSlotMachine,
@@ -384,7 +394,7 @@ private fun SecondaryActionsPanel(
                     label = stringResource(id = R.string.secondary_button_share),
                     backgroundColor = Color(0xFFE0E0E0),
                     textColor = AppConstants.Colors.CardText,
-                    onClick = { uiState.getDisplayText().let { DeliveryUtils.shareReason(context, it) } },
+                    onClick = { (uiState as? QuoteUiState.Success)?.quote?.let { DeliveryUtils.shareReason(context, it) } },
                     modifier = Modifier.weight(1f),
                     icon = Icons.Filled.Share
                 )
@@ -394,8 +404,10 @@ private fun SecondaryActionsPanel(
                     textColor = AppConstants.Colors.CardText,
                     onClick = {
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                        val clip = android.content.ClipData.newPlainText("reason", uiState.getDisplayText())
-                        clipboard.setPrimaryClip(clip)
+                        (uiState as? QuoteUiState.Success)?.quote?.let {
+                            val clip = android.content.ClipData.newPlainText("reason", it)
+                            clipboard.setPrimaryClip(clip)
+                        }
                     },
                     modifier = Modifier.weight(1f)
                 )
