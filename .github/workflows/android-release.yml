@@ -22,10 +22,10 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # Étape 3 : Déchiffrer et restaurer le Keystore depuis les secrets GitHub
+      # Étape 3 : Déchiffrer et restaurer le Keystore au bon endroit
       - name: Decode Keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > ${{ github.workspace }}/my_keystore.jks
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/my_keystore.jks
 
       # Étape 4 : Créer le fichier keystore.properties à la volée
       - name: Create keystore.properties file
@@ -34,7 +34,6 @@ jobs:
           echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> keystore.properties
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> keystore.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
-        # Note : Ce fichier sera à la racine du projet, exactement où le build.gradle.kts s'attend à le trouver.
 
       # Étape 5 : Donner les permissions d'exécution au script Gradle
       - name: Grant execute permission for gradlew
@@ -53,18 +52,15 @@ jobs:
       # Étape 8 : Mettre à jour le fichier update.json
       - name: Update update.json
         run: |
-          # Récupérer le versionCode depuis le build.gradle.kts (méthode robuste)
           VERSION_CODE=$(grep 'versionCode' app/build.gradle.kts | awk '{print $3}')
-          # Construire l'URL de téléchargement de l'APK
           APK_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/release/app-release.apk"
-          # Mettre à jour le JSON avec la nouvelle version et l'URL
           jq --argjson vc "$VERSION_CODE" --arg url "$APK_URL" '.versionCode = $vc | .url = $url' update.json > tmp.json && mv tmp.json update.json
 
       # Étape 9 : Commiter et pousser automatiquement l'APK et le JSON mis à jour
       - name: Commit and Push new APK and update.json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "CI: Automatic release of version ${{ steps.get_version.outputs.VERSION_CODE }}"
+          commit_message: "CI: Automatic new version release"
           file_pattern: "release/app-release.apk update.json"
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "actions@github.com"
