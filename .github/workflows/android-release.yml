@@ -5,6 +5,10 @@ on:
   push:
     branches: [ "main" ]
 
+# Correction : Ajout des permissions d'écriture pour le commit automatique
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -49,19 +53,12 @@ jobs:
           mkdir -p release
           mv app/build/outputs/apk/release/app-release.apk release/app-release.apk
 
-      # Étape 8 : Créer le fichier update.json (Correction)
+      # Étape 8 : Créer le fichier update.json
       - name: Create update.json
         run: |
-          # 1. Récupérer le versionCode du build.gradle.kts
           VERSION_CODE=$(grep 'versionCode' app/build.gradle.kts | awk '{print $3}')
-          
-          # 2. Construire l'URL dynamique de l'APK
           APK_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/release/app-release.apk"
-          
-          # 3. Créer le fichier JSON de zéro
           echo "{\"versionCode\": $VERSION_CODE, \"url\": \"$APK_URL\"}" > update.json
-          
-          # 4. Vérification dans les logs
           cat update.json
 
       # Étape 9 : Commiter et pousser automatiquement l'APK et le JSON mis à jour
