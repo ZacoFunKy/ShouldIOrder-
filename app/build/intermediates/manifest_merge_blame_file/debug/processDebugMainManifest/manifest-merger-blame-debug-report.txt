@@ -1,0 +1,177 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.shouldiorder"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="36" />
+10
+11    <!-- Permissions nécessaires -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:5:5-67
+12-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:5:22-64
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:6:5-81
+13-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:6:22-78
+14    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+14-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:7:5-83
+14-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:7:22-80
+15
+16    <permission
+16-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:22:5-24:47
+17        android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+17-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:23:9-81
+18        android:protectionLevel="signature" />
+18-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:24:9-44
+19
+20    <uses-permission android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+20-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:26:5-97
+20-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:26:22-94
+21
+22    <application
+22-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:9:5-40:19
+23        android:allowBackup="true"
+23-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:10:9-35
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:28:18-86
+25        android:dataExtractionRules="@xml/data_extraction_rules"
+25-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:11:9-65
+26        android:debuggable="true"
+27        android:extractNativeLibs="false"
+28        android:fullBackupContent="@xml/backup_rules"
+28-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:12:9-54
+29        android:icon="@mipmap/ic_launcher"
+29-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:13:9-43
+30        android:label="@string/app_name"
+30-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:14:9-41
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:15:9-54
+32        android:supportsRtl="true"
+32-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:16:9-35
+33        android:testOnly="true"
+34        android:theme="@style/Theme.ShouldIOrder" >
+34-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:17:9-50
+35        <provider
+36            android:name="androidx.core.content.FileProvider"
+36-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:20:13-62
+37            android:authorities="com.example.shouldiorder.provider"
+37-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:21:13-60
+38            android:exported="false"
+38-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:22:13-37
+39            android:grantUriPermissions="true" >
+39-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:23:13-47
+40            <meta-data
+40-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:24:13-26:58
+41                android:name="android.support.FILE_PROVIDER_PATHS"
+41-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:25:17-67
+42                android:resource="@xml/provider_paths" />
+42-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:26:17-55
+43        </provider>
+44
+45        <activity
+45-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:29:9-38:20
+46            android:name="com.example.shouldiorder.MainActivity"
+46-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:30:13-41
+47            android:exported="true"
+47-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:31:13-36
+48            android:screenOrientation="portrait"
+48-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:32:13-49
+49            android:theme="@style/Theme.App.Starting" >
+49-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:33:13-54
+50            <intent-filter>
+50-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:34:13-37:29
+51                <action android:name="android.intent.action.MAIN" />
+51-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:35:17-69
+51-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:35:25-66
+52
+53                <category android:name="android.intent.category.LAUNCHER" />
+53-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:36:17-77
+53-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:36:27-74
+54            </intent-filter>
+55        </activity>
+56        <activity
+56-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\4758b9f81be9ca70214d5e203dd4d038\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+57            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+57-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\4758b9f81be9ca70214d5e203dd4d038\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+58            android:exported="false"
+58-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\4758b9f81be9ca70214d5e203dd4d038\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+59            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+59-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\4758b9f81be9ca70214d5e203dd4d038\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+60
+61        <meta-data
+61-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\38cc565e3ef7a00cec62da154bfa9ba1\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+62            android:name="com.google.android.gms.version"
+62-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\38cc565e3ef7a00cec62da154bfa9ba1\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+63            android:value="@integer/google_play_services_version" />
+63-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\zacta\.gradle\caches\8.13\transforms\38cc565e3ef7a00cec62da154bfa9ba1\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+64
+65        <provider
+65-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+66            android:name="androidx.startup.InitializationProvider"
+66-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+67            android:authorities="com.example.shouldiorder.androidx-startup"
+67-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+68            android:exported="false" >
+68-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+69            <meta-data
+69-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+70                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+70-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+71                android:value="androidx.startup" />
+71-->[androidx.emoji2:emoji2:1.3.0] C:\Users\zacta\.gradle\caches\8.13\transforms\f8951ce5fe94ebc8570a33d6e7e408c2\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+72            <meta-data
+72-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\zacta\.gradle\caches\8.13\transforms\376bb798b05e2be14402b88d020c2886\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:29:13-31:52
+73                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+73-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\zacta\.gradle\caches\8.13\transforms\376bb798b05e2be14402b88d020c2886\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:30:17-78
+74                android:value="androidx.startup" />
+74-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\zacta\.gradle\caches\8.13\transforms\376bb798b05e2be14402b88d020c2886\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:31:17-49
+75            <meta-data
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+76                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+77                android:value="androidx.startup" />
+77-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+78        </provider>
+79
+80        <receiver
+80-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+81            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+82            android:directBootAware="false"
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+83            android:enabled="true"
+83-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+84            android:exported="true"
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+85            android:permission="android.permission.DUMP" >
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+86            <intent-filter>
+86-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+87                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+87-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+88            </intent-filter>
+89            <intent-filter>
+89-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+90                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+90-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+91            </intent-filter>
+92            <intent-filter>
+92-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+93                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+93-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+94            </intent-filter>
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+96                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+96-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\zacta\.gradle\caches\8.13\transforms\1b7a164f9f1d57891d02b3b63446cdbb\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+97            </intent-filter>
+98        </receiver>
+99    </application>
+100
+101</manifest>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Should I Order?</string>
+
+    <!-- MainActivity & UI Components -->
+    <string name="logo_should_i">Should I</string>
+    <string name="logo_order">Order</string>
+    <string name="logo_question_mark">?</string>
+    <string name="main_button_text">Donne-moi une raison !</string>
+    <string name="secondary_button_find_food">🍕 Je ne sais pas quoi manger</string>
+    <string name="secondary_button_uber_eats">🚗 Uber Eats</string>
+    <string name="secondary_button_deliveroo">🍽️ Deliveroo</string>
+    <string name="secondary_button_share">Partager</string>
+    <string name="secondary_button_copy">Copier</string>
+
+    <!-- MainViewModel -->
+    <string name="initial_quote">On a faim ?</string>
+    <string name="error_loading_quotes">Impossible de charger les raisons.</string>
+
+    <!-- LocationPermissionHandler -->
+    <string name="permission_rationale">La permission de localisation est nécessaire pour obtenir des suggestions basées sur la météo. Veuillez accorder la permission.</string>
+    <string name="permission_button_text">Demander la permission</string>
+
+    <!-- Food Slot Machine -->
+    <string name="food_burger">Burger</string>
+    <string name="food_pizza">Pizza</string>
+    <string name="food_sushi">Sushi</string>
+    <string name="food_tacos">Tacos</string>
+    <string name="food_salad">Salade</string>
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Thème principal de l'application pour le mode nuit -->
+    <style name="Theme.ShouldIOrder" parent="android:Theme.Material.NoActionBar" />
+
+    <!-- Thème pour le Splash Screen en mode nuit -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Couleur de fond sombre pour le Splash Screen -->
+        <item name="windowSplashScreenBackground">@color/splash_screen_background_dark</item>
+
+        <!-- Icône au centre (peut être différente si nécessaire) -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
+        
+        <!-- Thème à appliquer après le Splash Screen -->
+        <item name="postSplashScreenTheme">@style/Theme.ShouldIOrder</item>
+    </style>
+</resources>
