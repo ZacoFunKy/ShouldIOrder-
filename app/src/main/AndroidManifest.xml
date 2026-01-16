@@ -5,7 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Permission ajoutée -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Déclaration pour la visibilité des packages (Android 11+) -->
+    <queries>
+        <package android:name="com.ubercab.eats" />
+        <package android:name="com.deliveroo.orderapp" />
+    </queries>
 
     <application
         android:allowBackup="true"
