@@ -248,21 +248,17 @@ private fun QuoteCard(uiState: QuoteUiState) {
                 .padding(AppConstants.Dimensions.PaddingHuge),
             contentAlignment = Alignment.Center
         ) {
-            when (uiState) {
+            when (val state = uiState) {
                 is QuoteUiState.Loading -> {
                     CircularProgressIndicator(color = AppConstants.Colors.OrangePrimary)
                 }
-                is QuoteUiState.Success, is QuoteUiState.Error -> {
-                    AnimatedContent(
-                        targetState = uiState.getDisplayText(),
-                        transitionSpec = {
-                            (slideInVertically { -40 } + scaleIn(initialScale = 0.8f) + fadeIn()) togetherWith
-                                (slideOutVertically { 40 } + fadeOut())
-                        },
-                        label = "quotePopAnimation"
-                    ) { quote ->
-                        AdaptiveQuoteText(quote = quote)
+                is QuoteUiState.Success -> {
+                    AnimatedContent(targetState = state.quote, label = "quoteAnimation") {
+                        AdaptiveQuoteText(quote = it)
                     }
+                }
+                is QuoteUiState.Error -> {
+                    AdaptiveQuoteText(quote = state.message)
                 }
             }
         }
@@ -272,21 +268,24 @@ private fun QuoteCard(uiState: QuoteUiState) {
 @Composable
 private fun AdaptiveQuoteText(quote: String) {
     val fontSize = when {
-        quote.length > 100 -> 18.sp
-        quote.length > 80 -> 20.sp
-        else -> AppConstants.Typography.QuoteTextSize
+        quote.length > 120 -> 18.sp
+        quote.length > 100 -> 20.sp
+        quote.length > 80 -> 22.sp
+        else -> 26.sp
     }
+    val lineHeight = fontSize * 1.2
 
     Text(
         text = quote,
         fontSize = fontSize,
+        lineHeight = lineHeight,
         fontWeight = FontWeight.Bold,
         color = AppConstants.Colors.OrangeSecondary,
         textAlign = TextAlign.Center,
-        lineHeight = 32.sp,
         modifier = Modifier.padding(AppConstants.Dimensions.PaddingMedium)
     )
 }
+
 
 @Composable
 private fun FooterActions(

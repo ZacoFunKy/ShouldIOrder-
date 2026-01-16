@@ -55,14 +55,14 @@ class MainViewModel(private val context: Context) : ViewModel() {
             }
             _isReady.value = true
 
-            // Lance la vérification de mise à jour en arrière-plan, après un délai.
+            // La vérification de mise à jour est lancée dans une coroutine séparée et sécurisée.
             checkForUpdates()
         }
     }
 
     private fun checkForUpdates() {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(2000) // Laisse le temps à l'UI de se stabiliser
+            delay(2000) // On attend que l'UI soit stable
             try {
                 updateManager.checkForUpdate()
             } catch (e: Exception) {
@@ -73,6 +73,30 @@ class MainViewModel(private val context: Context) : ViewModel() {
 
     fun onPermissionResult(hasPermission: Boolean) {
         this.hasLocationPermission = hasPermission
+        if (hasPermission) {
+            fetchWeatherForCurrentQuote()
+        }
+    }
+
+    private fun fetchWeatherForCurrentQuote() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                withTimeout(2000L) {
+                    locationProvider.getLastLocation()?.let { (lat, lon) ->
+                        weatherProvider.getWeatherCategory(lat, lon)?.let { weatherCategory ->
+                            val newReason = QuotesProvider.getRandomQuoteByCategory(weatherCategory)
+                            if (newReason != lastReason) {
+                                withContext(Dispatchers.Main) {
+                                    _uiState.value = QuoteUiState.Success(newReason)
+                                    lastReason = newReason
+                                    _isWeatherBased.value = true
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) { /* Ignoré */ }
+        }
     }
 
     fun getRandomReason() {
@@ -94,9 +118,7 @@ class MainViewModel(private val context: Context) : ViewModel() {
                             }
                         }
                     }
-                } catch (e: Exception) {
-                    // Ignoré volontairement
-                }
+                } catch (e: Exception) { /* Ignoré */ }
             }
 
             val newReason = QuotesProvider.getRandomQuoteByCategory(category)

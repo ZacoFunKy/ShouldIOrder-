@@ -12,10 +12,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import com.example.shouldiorder.R
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -28,10 +31,13 @@ class UpdateManager(private val context: Context) {
 
     private val updateJsonUrl = "https://raw.githubusercontent.com/ZacoFunKy/ShouldIOrder-/main/update.json"
 
-    // Correction : Ajout d'une baseUrl obligatoire pour Retrofit.
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory()) // Ajout de l'adapteur pour Kotlin
+        .build()
+
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://raw.githubusercontent.com/") // URL de base générique
-        .addConverterFactory(MoshiConverterFactory.create())
+        .baseUrl("https://raw.githubusercontent.com/ZacoFunKy/ShouldIOrder-/main/")
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
     private val updateService = retrofit.create(UpdateService::class.java)
@@ -39,7 +45,7 @@ class UpdateManager(private val context: Context) {
     suspend fun checkForUpdate() {
         withContext(Dispatchers.IO) {
             try {
-                val updateInfo = updateService.checkForUpdates(updateJsonUrl)
+                val updateInfo = updateService.checkForUpdates()
                 val currentVersionCode = context.getCurrentVersionCode()
 
                 if (updateInfo.versionCode > currentVersionCode) {
@@ -48,6 +54,7 @@ class UpdateManager(private val context: Context) {
                     }
                 }
             } catch (e: Exception) {
+                Log.e("UpdateManager", "La vérification de la mise à jour a échoué", e)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, "Erreur de vérification de mise à jour", Toast.LENGTH_SHORT).show()
                 }
@@ -115,7 +122,6 @@ class UpdateManager(private val context: Context) {
     }
 }
 
-// Fonction d'extension pour obtenir le versionCode de manière sûre
 fun Context.getCurrentVersionCode(): Long {
     return try {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -125,6 +131,6 @@ fun Context.getCurrentVersionCode(): Long {
             packageManager.getPackageInfo(packageName, 0).versionCode.toLong()
         }
     } catch (e: PackageManager.NameNotFoundException) {
-        -1 // Devrait ne jamais arriver
+        -1
     }
 }

@@ -1,49 +1,43 @@
 package com.example.shouldiorder.utils
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
 /**
- * Utility pour ouvrir les apps de livraison
+ * Utility pour ouvrir les apps de livraison et autres actions.
  */
 object DeliveryUtils {
 
+    private const val UBER_EATS_PACKAGE = "com.ubercab.eats"
+    private const val DELIVEROO_PACKAGE = "com.deliveroo.orderapp"
+
     fun openUberEats(context: Context) {
-        try {
-            // Essayer d'ouvrir l'app Uber Eats si elle est installée
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("ubereats://home")
-                `package` = "com.ubercab.eats"
-            }
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
-            } else {
-                // Sinon, ouvrir le site web
-                openWebsite(context, "https://www.ubereats.com")
-            }
-        } catch (e: Exception) {
-            openWebsite(context, "https://www.ubereats.com")
-        }
+        openAppOrPlayStore(context, UBER_EATS_PACKAGE)
     }
 
     fun openDeliveroo(context: Context) {
-        try {
-            // Essayer d'ouvrir l'app Deliveroo si elle est installée
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("deliveroo://home")
-                `package` = "com.deliveroo"
+        openAppOrPlayStore(context, DELIVEROO_PACKAGE)
+    }
+
+    /**
+     * Tente d'ouvrir une application par son nom de package.
+     * Si elle n'est pas installée, ouvre sa page sur le Play Store.
+     */
+    private fun openAppOrPlayStore(context: Context, packageName: String) {
+        val launchIntent = context.packageManager.getLaunchIntentForPackage(packageName)
+        if (launchIntent != null) {
+            // L'application est installée, on la lance.
+            context.startActivity(launchIntent)
+        } else {
+            // L'application n'est pas installée, on redirige vers le Play Store.
+            try {
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+            } catch (e: ActivityNotFoundException) {
+                // Si le Play Store n'est pas disponible, on ouvre le site web.
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
             }
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
-            } else {
-                // Sinon, ouvrir le site web
-                openWebsite(context, "https://deliveroo.fr")
-            }
-        } catch (e: Exception) {
-            openWebsite(context, "https://deliveroo.fr")
         }
     }
 
@@ -56,12 +50,4 @@ object DeliveryUtils {
         }
         context.startActivity(Intent.createChooser(intent, "Partager la raison"))
     }
-
-    private fun openWebsite(context: Context, url: String) {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(url)
-        }
-        context.startActivity(intent)
-    }
 }
-

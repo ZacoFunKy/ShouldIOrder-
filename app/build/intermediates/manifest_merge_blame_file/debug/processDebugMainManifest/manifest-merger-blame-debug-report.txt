@@ -18,77 +18,79 @@
 14    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 14-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:7:5-83
 14-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:7:22-80
-15
-16    <permission
-16-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:22:5-24:47
-17        android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-17-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:23:9-81
-18        android:protectionLevel="signature" />
-18-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:24:9-44
-19
-20    <uses-permission android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-20-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:26:5-97
-20-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:26:22-94
-21
+15    <uses-permission android:name="android.permission.VIBRATE" />
+15-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:8:5-66
+15-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:8:22-63
+16
+17    <permission
+17-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:22:5-24:47
+18        android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+18-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:23:9-81
+19        android:protectionLevel="signature" />
+19-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:24:9-44
+20
+21    <uses-permission android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Permission ajoutée -->
+21-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:26:5-97
+21-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:26:22-94
 22    <application
-22-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:9:5-40:19
+22-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:10:5-41:19
 23        android:allowBackup="true"
-23-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:10:9-35
+23-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:11:9-35
 24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 24-->[androidx.core:core:1.17.0] C:\Users\zacta\.gradle\caches\8.13\transforms\0035c29abbc88f8fcb3f0b9df5ffe551\transformed\core-1.17.0\AndroidManifest.xml:28:18-86
 25        android:dataExtractionRules="@xml/data_extraction_rules"
-25-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:11:9-65
+25-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:12:9-65
 26        android:debuggable="true"
 27        android:extractNativeLibs="false"
 28        android:fullBackupContent="@xml/backup_rules"
-28-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:12:9-54
+28-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:13:9-54
 29        android:icon="@mipmap/ic_launcher"
-29-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:13:9-43
+29-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:14:9-43
 30        android:label="@string/app_name"
-30-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:14:9-41
+30-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:15:9-41
 31        android:roundIcon="@mipmap/ic_launcher_round"
-31-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:15:9-54
+31-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:16:9-54
 32        android:supportsRtl="true"
-32-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:16:9-35
+32-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:17:9-35
 33        android:testOnly="true"
 34        android:theme="@style/Theme.ShouldIOrder" >
-34-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:17:9-50
+34-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:18:9-50
 35        <provider
 36            android:name="androidx.core.content.FileProvider"
-36-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:20:13-62
+36-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:21:13-62
 37            android:authorities="com.example.shouldiorder.provider"
-37-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:21:13-60
+37-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:22:13-60
 38            android:exported="false"
-38-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:22:13-37
+38-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:23:13-37
 39            android:grantUriPermissions="true" >
-39-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:23:13-47
+39-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:24:13-47
 40            <meta-data
-40-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:24:13-26:58
+40-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:25:13-27:58
 41                android:name="android.support.FILE_PROVIDER_PATHS"
-41-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:25:17-67
+41-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:26:17-67
 42                android:resource="@xml/provider_paths" />
-42-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:26:17-55
+42-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:27:17-55
 43        </provider>
 44
 45        <activity
-45-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:29:9-38:20
+45-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:30:9-39:20
 46            android:name="com.example.shouldiorder.MainActivity"
-46-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:30:13-41
+46-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:31:13-41
 47            android:exported="true"
-47-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:31:13-36
+47-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:32:13-36
 48            android:screenOrientation="portrait"
-48-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:32:13-49
+48-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:33:13-49
 49            android:theme="@style/Theme.App.Starting" >
-49-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:33:13-54
+49-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:34:13-54
 50            <intent-filter>
-50-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:34:13-37:29
+50-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:35:13-38:29
 51                <action android:name="android.intent.action.MAIN" />
-51-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:35:17-69
-51-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:35:25-66
+51-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:36:17-69
+51-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:36:25-66
 52
 53                <category android:name="android.intent.category.LAUNCHER" />
-53-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:36:17-77
-53-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:36:27-74
+53-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:37:17-77
+53-->C:\Users\zacta\AndroidStudioProjects\ShouldIOrder\app\src\main\AndroidManifest.xml:37:27-74
 54            </intent-filter>
 55        </activity>
 56        <activity
