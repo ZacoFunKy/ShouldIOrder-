@@ -16,6 +16,7 @@ import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import com.example.shouldiorder.R
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -30,7 +31,8 @@ class UpdateManager(private val context: Context) {
     private val updateJsonUrl = "https://raw.githubusercontent.com/ZacoFunKy/ShouldIOrder-/main/update.json"
 
     private val client = OkHttpClient()
-    private val moshi = Moshi.Builder().build()
+    // Correction : Ajout du KotlinJsonAdapterFactory, essentiel pour le parsing en release.
+    private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     suspend fun checkForUpdate() {
         Log.d(TAG, "Lancement de la vérification de la mise à jour sur: $updateJsonUrl")

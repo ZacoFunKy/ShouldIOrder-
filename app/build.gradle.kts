@@ -40,8 +40,8 @@ android {
         applicationId = "com.example.shouldiorder"
         minSdk = 24
         targetSdk = 36
-        versionCode = 4 // Version incrémentée
-        versionName = "1.10" // Nouvelle version
+        versionCode = 3 // Version incrémentée
+        versionName = "1.0.2" // Nouvelle version
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
