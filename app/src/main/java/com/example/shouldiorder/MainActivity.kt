@@ -32,7 +32,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -109,16 +108,10 @@ fun ShouldIOrderApp(viewModel: MainViewModel) {
 
     var showFoodSlotMachine by rememberSaveable { mutableStateOf(false) }
 
-    val backgroundGradient = Brush.linearGradient(
-        colors = listOf(AppConstants.Colors.GradientStart, AppConstants.Colors.GradientEnd),
-        start = Offset.Zero,
-        end = Offset(0f, Float.POSITIVE_INFINITY)
-    )
-
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(brush = backgroundGradient)
+            .background(brush = Brush.linearGradient(colors = listOf(AppConstants.Colors.GradientStart, AppConstants.Colors.GradientEnd)))
             .systemBarsPadding()
     ) {
         konfettiParty?.let {
@@ -155,7 +148,6 @@ fun ShouldIOrderApp(viewModel: MainViewModel) {
             )
         }
 
-        // Affichage discret du numéro de version
         Text(
             text = "v${BuildConfig.VERSION_NAME}",
             style = MaterialTheme.typography.labelSmall,
@@ -268,12 +260,13 @@ private fun QuoteCard(uiState: QuoteUiState) {
 @Composable
 private fun AdaptiveQuoteText(quote: String) {
     val fontSize = when {
-        quote.length > 120 -> 18.sp
-        quote.length > 100 -> 20.sp
-        quote.length > 80 -> 22.sp
-        else -> 26.sp
+        quote.length > 130 -> 16.sp
+        quote.length > 110 -> 18.sp
+        quote.length > 90 -> 20.sp
+        quote.length > 70 -> 22.sp
+        else -> 24.sp
     }
-    val lineHeight = fontSize * 1.2
+    val lineHeight = fontSize * 1.25
 
     Text(
         text = quote,
@@ -317,6 +310,7 @@ private fun PrimaryActionButton(
     viewModel: MainViewModel,
     uiState: QuoteUiState
 ) {
+    val context = LocalContext.current
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
@@ -339,12 +333,6 @@ private fun PrimaryActionButton(
         interactionSource = interactionSource,
         enabled = uiState !is QuoteUiState.Loading
     ) {
-        Icon(
-            imageVector = Icons.Filled.Favorite,
-            contentDescription = null,
-            tint = Color.White,
-            modifier = Modifier.padding(end = AppConstants.Dimensions.PaddingMedium)
-        )
         Text(
             text = stringResource(id = R.string.main_button_text),
             fontSize = AppConstants.Typography.ButtonTextSize,
