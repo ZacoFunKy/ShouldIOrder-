@@ -5,7 +5,6 @@ on:
   push:
     branches: [ "main" ]
 
-# Permissions nécessaires pour écrire la Release et commiter le JSON
 permissions:
   contents: write
 
@@ -14,11 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Étape 1 : Récupérer le code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Étape 2 : Java
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -26,12 +23,9 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # Étape 3 : Keystore
       - name: Decode Keystore
-        run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/my_keystore.jks
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > app/my_keystore.jks
 
-      # Étape 4 : Properties
       - name: Create keystore.properties file
         run: |
           echo "storeFile=my_keystore.jks" > keystore.properties
@@ -39,58 +33,33 @@ jobs:
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> keystore.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
 
-      # Étape 5 : Permissions Gradle
+      # Nouvelle étape : Créer le fichier de version dynamiquement
+      - name: Create version.properties file
+        run: echo "versionCode=${{ github.run_number }}" > version.properties
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # Étape 6 : Build
       - name: Build release APK
         run: ./gradlew assembleRelease
 
-      # Étape 7 : Extraction des versions (Code & Name)
-      - name: Extract Version Information
-        id: extract_version
+      - name: Prepare release files
         run: |
-          VERSION_CODE=$(grep 'versionCode' app/build.gradle.kts | awk '{print $3}')
-          # Extraction un peu plus robuste du versionName (enlève les guillemets)
-          VERSION_NAME=$(grep 'versionName' app/build.gradle.kts | awk '{print $3}' | tr -d '"')
-          
-          echo "VERSION_CODE=$VERSION_CODE" >> $GITHUB_ENV
-          echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
-          
-          echo "Detected Version: $VERSION_NAME ($VERSION_CODE)"
+          mkdir -p release
+          mv app/build/outputs/apk/release/app-release.apk release/app-release.apk
 
-      # Étape 8 : Préparation fichier APK
-      - name: Move APK
-        run: |
-          mv app/build/outputs/apk/release/app-release.apk app-release.apk
-
-      # Étape 9 : Création update.json (Avec le lien vers la RELEASE)
       - name: Create update.json
         run: |
-          # L'URL pointe maintenant vers les assets de la release GitHub
-          APK_URL="https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION_NAME }}/app-release.apk"
-          
-          echo "{\"versionCode\": ${{ env.VERSION_CODE }}, \"url\": \"$APK_URL\"}" > update.json
+          VERSION_CODE=${{ github.run_number }}
+          APK_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/release/app-release.apk"
+          echo "{\"versionCode\": $VERSION_CODE, \"url\": \"$APK_URL\"}" > update.json
           cat update.json
 
-      # Étape 10 : Commiter update.json (Pour que l'app puisse vérifier la version)
-      # On ne commit PAS l'APK ici pour ne pas alourdir le git, il sera dans la Release.
-      - name: Commit update.json
+      - name: Commit and Push new APK and update.json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "CI: Update version to v${{ env.VERSION_NAME }}"
-          file_pattern: "update.json"
-
-      # Étape 11 : Créer la VRAIE Release GitHub
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ env.VERSION_NAME }}
-          name: Release v${{ env.VERSION_NAME }}
-          body: "Nouvelle mise à jour automatique générée par CI/CD."
-          draft: false
-          prerelease: false
-          files: app-release.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: "CI: Automatic release of version ${{ github.run_number }}"
+          file_pattern: "release/app-release.apk update.json version.properties"
+          commit_user_name: "GitHub Actions Bot"
+          commit_user_email: "actions@github.com"
+          commit_author: "GitHub Actions Bot <actions@github.com>"

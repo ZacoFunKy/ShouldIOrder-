@@ -8,7 +8,14 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-// Préparation pour la signature
+// Lire les propriétés de version (si elles existent)
+val versionPropertiesFile = rootProject.file("version.properties")
+val versionProperties = Properties()
+if (versionPropertiesFile.exists()) {
+    versionProperties.load(FileInputStream(versionPropertiesFile))
+}
+
+// Lire les propriétés du keystore
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 if (keystorePropertiesFile.exists()) {
@@ -24,7 +31,6 @@ android {
         buildConfig = true
     }
 
-    // Configuration de la signature (uniquement si le fichier de propriétés existe)
     if (keystorePropertiesFile.exists()) {
         signingConfigs {
             create("release") {
@@ -40,8 +46,9 @@ android {
         applicationId = "com.example.shouldiorder"
         minSdk = 24
         targetSdk = 36
-        versionCode = 3 // Version incrémentée
-        versionName = "1.0.2" // Nouvelle version
+        // Le versionCode est maintenant lu depuis le fichier de propriétés, avec une valeur par défaut.
+        versionCode = versionProperties.getProperty("versionCode", "1").toInt()
+        versionName = "1.10" 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,7 +61,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Appliquer la signature uniquement si elle a été configurée
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.getByName("release")
             }
