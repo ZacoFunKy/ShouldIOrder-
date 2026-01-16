@@ -55,14 +55,13 @@ class MainViewModel(private val context: Context) : ViewModel() {
             }
             _isReady.value = true
 
-            // La vérification de mise à jour est lancée dans une coroutine séparée et sécurisée.
             checkForUpdates()
         }
     }
 
     private fun checkForUpdates() {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(2000) // On attend que l'UI soit stable
+            delay(3000) // Délai pour ne pas impacter le démarrage
             try {
                 updateManager.checkForUpdate()
             } catch (e: Exception) {
@@ -71,32 +70,9 @@ class MainViewModel(private val context: Context) : ViewModel() {
         }
     }
 
+    // Correction : La fonction ne fait plus que stocker le résultat.
     fun onPermissionResult(hasPermission: Boolean) {
         this.hasLocationPermission = hasPermission
-        if (hasPermission) {
-            fetchWeatherForCurrentQuote()
-        }
-    }
-
-    private fun fetchWeatherForCurrentQuote() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                withTimeout(2000L) {
-                    locationProvider.getLastLocation()?.let { (lat, lon) ->
-                        weatherProvider.getWeatherCategory(lat, lon)?.let { weatherCategory ->
-                            val newReason = QuotesProvider.getRandomQuoteByCategory(weatherCategory)
-                            if (newReason != lastReason) {
-                                withContext(Dispatchers.Main) {
-                                    _uiState.value = QuoteUiState.Success(newReason)
-                                    lastReason = newReason
-                                    _isWeatherBased.value = true
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch (e: Exception) { /* Ignoré */ }
-        }
     }
 
     fun getRandomReason() {
@@ -106,6 +82,7 @@ class MainViewModel(private val context: Context) : ViewModel() {
             var category = QuoteCategory.DEFAULT
             var isFromWeather = false
 
+            // C'est ici que la permission est utilisée, au moment du clic.
             if (hasLocationPermission) {
                 try {
                     withContext(Dispatchers.IO) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shouldiorder"
-    android:versionCode="1"
-    android:versionName="1.0.0" >
+    android:versionCode="2"
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="24"
@@ -11,14 +11,21 @@
     <!-- Permissions nécessaires -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!-- Déclaration pour la visibilité des packages (Android 11+) -->
+    <queries>
+        <package android:name="com.ubercab.eats" />
+        <package android:name="com.deliveroo.orderapp" />
+    </queries>
 
     <permission
         android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Permission ajoutée -->
+    <uses-permission android:name="com.example.shouldiorder.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -32,6 +39,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.ShouldIOrder" >
+
+        <!-- Déclaration du FileProvider pour partager des fichiers de manière sécurisée -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.shouldiorder.provider"
