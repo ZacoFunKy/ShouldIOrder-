@@ -1,15 +1,16 @@
 package com.example.shouldiorder.updater
 
+import com.squareup.moshi.JsonClass
 import retrofit2.http.GET
 
-// La data class ne change pas
+// Correction : Ajout de l'annotation pour la génération de code KSP
+@JsonClass(generateAdapter = true)
 data class UpdateInfo(
     val versionCode: Int,
     val url: String
 )
 
 interface UpdateService {
-    // On spécifie le fichier directement. Retrofit le combinera avec la baseUrl.
     @GET("update.json")
     suspend fun checkForUpdates(): UpdateInfo
 }
